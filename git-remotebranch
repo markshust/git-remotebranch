@@ -12,17 +12,21 @@ case $1 in
     git checkout -b ${2}
     git push -u origin ${2}
     echo "The ${2} remote branch has been added"
-    ;;
+    ;;  
 'rm')
     git push origin :heads/${2}
     # also delete local branch, comment out if not needed
     git branch -D ${2}
     echo "The ${2} remote branch has been removed"
-    ;;
+    ;;  
+'push')
+    git push origin ${2}
+    echo "The ${2} remote branch has been pushed"
+    ;;  
 'co')
     git checkout --track -b ${2} origin/${2}
-    ;;
+    ;;  
 *)
-    echo "Invalid action. Must be 'add', 'rm' or 'co'."
-    ;;
+    echo "Invalid action. Must be 'add', 'rm', 'co', or 'push'."
+    ;;  
 esac
